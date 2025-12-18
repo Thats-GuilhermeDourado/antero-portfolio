@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8" />
+    <title>Antero Rodrigo | Video Maker / Photographer</title>
+    
+    <!-- Fontes externas (Google Fonts e ícones Font Awesome) -->
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Principais estilos do site -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Ícone do site (favicon / cursor estilo Windows) -->
+    <link rel="icon" type="image/x-icon" href="cursors/Cursor107.cur">
+</head>
+<body>
+
+    <!-- Janelas criadas dinamicamente via JavaScript -->
+
+<div id="portfolio-window" class="window" onclick="bringWindowToFront(this)">
+        </div>
+
+    <div id="aboutme-popup" class="popup" onclick="bringWindowToFront(this)">
+        </div>
+
+    <!-- Fundo animado decorativo (glitter) -->
+    <div class="glitter-bg"></div>
+
+    <!-- Tela de carregamento inicial do site -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-window">
+            <div class="loading-text" id="loadingMessage">
+                Loading content...
+            </div>
+            <div class="windows-progress-bar">
+                <div class="windows-progress" id="refreshProgress"></div>
+            </div>
+            <div style="font-size: 16px; color: #666;">
+                Please wait while the system loads...
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup controle de volume -->
+    <div class="volume-popup" id="volumePopup">
+        <div style="font-weight: bold; margin-bottom: 10px; color: #ff1493;">
+            <i class="fas fa-volume-up"></i> Volume Control
+        </div>
+        <input type="range" min="0" max="100" value="50" class="volume-slider" id="volumeSlider">
+        <div style="margin-top: 10px; font-size: 14px;">
+            <button onclick="muteAll()" style="padding: 4px 10px; margin-right: 5px; background: #ff69b4; border: 2px solid #000; cursor: pointer;">
+                <i class="fas fa-volume-mute"></i> Mute
+            </button>
+            <button onclick="closeVolume()" style="padding: 4px 10px; background: #fff; border: 2px solid #000; cursor: pointer;">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Janela principal (Hero) -->
+    <section class="hero-section">
+        <div class="hero-window" id="heroWindow">
+            <div class="hero-title-bar" id="heroTitleBar">
+                <div class="title">
+                    <i class="fas fa-star"></i>
+                    Portfolio.exe
+                </div>
+                <div class="hero-controls">
+                    <div class="btn" id="heroMinBtn">
+                        <i class="fas fa-window-minimize"></i>
+                    </div>
+                    <div class="btn" id="heroMaxBtn">
+                        <i class="fas fa-window-maximize"></i>
+                    </div>
+                    <div class="btn" id="heroCloseBtn">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-content">
+                <h1 class="hero-name">ANTERO RODRIGO</h1>
+                <h2 class="hero-subtitle">Videomaker & Photographer</h2>
+                <p class="hero-tagline">
+                    "Escrever algo aqui"
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation Window -->
+    <div class="nav-window" id="navWindow">
+        <div class="window-title-bar" id="windowTitleBar">
+            <div class="window-title">
+                <i class="fas fa-compass"></i>
+                Navigation.exe
+            </div>
+            <div class="window-controls">
+                <div class="window-btn" id="minBtn">
+                    <i class="fas fa-window-minimize"></i>
+                </div>
+                <div class="window-btn" id="maxBtn">
+                    <i class="fas fa-window-maximize"></i>
+                </div>
+                <div class="window-btn" id="closeBtn">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="nav-content">
+            <a href="#photography" class="nav-item" id="photoNav">
+                <div class="icon-container">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <span>Photography</span>
+            </a>
+            
+            <a href="#video" class="nav-item" id="videoNav">
+                <div class="icon-container">
+                    <i class="fas fa-video"></i>
+                </div>
+                <span>Video</span>
+            </a>
+            
+            <a href="#projects" class="nav-item" id="projectsNav">
+                <div class="icon-container">
+                    <i class="fas fa-folder-open"></i>
+                </div>
+                <span>Projects</span>
+            </a>
+            
+            <a href="#about" class="nav-item" id="aboutNav">
+                <div class="icon-container">
+                    <i class="fas fa-user"></i>
+                </div>
+                <span>About Me</span>
+            </a>
+            
+            <a href="#contact" class="nav-item" id="contactNav">
+                <div class="icon-container">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <span>Contact</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Windows Start Bar -->
+    <div class="windows-start-bar">
+        <button class="start-button" id="startButton">
+            <i class="fas fa-play"></i>
+            Start
+        </button>
+        
+        <div class="taskbar" id="taskbar">
+            <div class="taskbar-item blink" style="background: rgba(255,255,255,0.5); padding: 4px 10px; border: 1px solid #000; margin-right: 5px;">
+                <i class="fas fa-compass"></i> Navigation
+            </div>
+        </div>
+        
+        <div class="system-tray">
+            <div class="clock" id="clock">00:00</div>
+            <div class="volume-control" id="volumeButton" title="Volume Control">
+                <i class="fas fa-volume-up" style="color: white;"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Me Popup -->
+    <div class="popup-overlay" id="aboutOverlay"></div>
+    <div class="about-popup" id="aboutPopup">
+        <div class="notepad-header">
+            <div class="notepad-title">
+                <i class="fas fa-user-edit"></i>
+                About Antero.txt - Notepad
+            </div>
+            <div class="notepad-controls">
+                <div class="notepad-btn" id="aboutMinBtn">
+                    <i class="fas fa-window-minimize"></i>
+                </div>
+                <div class="notepad-btn" id="aboutMaxBtn">
+                    <i class="fas fa-window-maximize"></i>
+                </div>
+                <div class="notepad-btn" id="aboutCloseBtn">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="notepad-menu-bar">
+            <span class="notepad-menu-item">File</span>
+            <span class="notepad-menu-item">Edit</span>
+            <span class="notepad-menu-item">Format</span>
+            <span class="notepad-menu-item">View</span>
+            <span class="notepad-menu-item">Help</span>
+        </div>
+        
+        <div class="notepad-content">
+            <div class="about-portrait">
+                <img id="portraitImage" src="assets/portrait.jpg" alt="Antero Rodrigo" 
+                     style="width: 100%; height: 100%; object-fit: cover; display: none;">
+                <div class="portrait-placeholder" id="portraitPlaceholder">
+                    📸 Portrait.jpg<br>
+                    <span style="font-size: 12px;">Click to view</span>
+                </div>
+            </div>
+            
+            <div class="about-text">
+                <h3>ANTERO RODRIGO</h3>
+                
+                <p>
+                    <strong>File Edit View:</strong> Alguma descrição aqui
+                </p>
+                
+                <p>
+                    <strong>Creative.exe Status:</strong> Running since XXXX<br>
+                    <strong>Specialties:</strong> Visual storytelling, Color theory, blablabla<br>
+                    <strong>Current Project:</strong> nao sei
+                </p>
+                
+                <div class="xp-skills-section">
+                    <h4 style="color: #2b5797; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-tools"></i>
+                        Creative Tools & Skills
+                    </h4>
+                    
+                    <div class="xp-panel-button" id="openSkillsPanel">
+                        <div class="xp-button-inner">
+                            <i class="fas fa-cogs"></i>
+                            View/Edit Skills
+                        </div>
+                    </div>
+                    
+                    <div class="skills-preview">
+                        <div class="skill-tag" data-skill="photoshop">
+                            <i class="fab fa-adobe"></i> Photoshop
+                        </div>
+                        <div class="skill-tag" data-skill="after-effects">
+                            <i class="fas fa-film"></i> After Effects
+                        </div>
+                        <div class="skill-tag" data-skill="premiere">
+                            <i class="fas fa-video"></i> Premiere Pro
+                        </div>
+                        <div class="skill-tag" data-skill="illustrator">
+                            <i class="fas fa-pen-nib"></i> Illustrator
+                        </div>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <div class="social-title">
+                        <i class="fas fa-network-wired"></i>
+                        Network Connections
+                    </div>
+                    
+                    <div class="social-icons">
+                        <a href="https://instagram.com/_ant_rodrigo" target="_blank" class="social-icon" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <div class="social-icon" id="copyEmailBtn" title="Copy Email">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="social-icon" id="fakeTwitterBtn" title="Coming Soon">
+                            <i class="fab fa-twitter"></i>
+                        </div>
+                        <div class="social-icon" id="fakeBehanceBtn" title="Portfolio">
+                            <i class="fab fa-behance"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="gmail-container">
+                        <span class="gmail-label">Gmail:</span>
+                        <div class="gmail-box">
+                            <span id="emailText">antero.rodrigo.contact@gmail.com</span>
+                            <button class="copy-btn" id="copyTextBtn">Copy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="notepad-status-bar">
+            <span>Ln 1, Col 1</span>
+            <span>100%</span>
+            <span>Windows (CRLF)</span>
+            <span>UTF-8</span>
+        </div>
+    </div>
+
+    <!-- Área de trabalho (Desktop) -->
+    <div class="desktop" id="desktop">
+        <!-- Ícones serão adicionados dinamicamente via JavaScript -->
+
+        <!-- Icone de lixeira -->
+        <div class="desktop-icon trash-icon-functional" id="trashIcon">
+            <div class="icon-image">
+                <img src="assets/trash.ico" alt="Trash">
+            </div>
+            <div class="icon-label">Trash</div>
+        </div>
+    </div>
+
+    <!-- Menu de contexto (botão direito) -->
+    <div class="context-item wallpaper-item" data-action="setWallpaper" style="display: none;">
+        <i class="fas fa-image"></i> Set as Desktop Wallpaper
+    </div>
+    
+    <div class="context-menu" id="contextMenu">
+        <div class="context-item" data-action="addToDesktop">
+            <i class="fas fa-plus"></i> Adicionar à área de trabalho
+        </div>
+        <div class="context-item" data-action="closeWindow">
+            <i class="fas fa-times"></i> Fechar Janela
+        </div>
+        <hr class="context-divider">
+        <div class="context-item" data-action="refreshDesktop">
+            <i class="fas fa-redo"></i> Reorganizar Desktop
+        </div>
+    </div>
+
+<!-- activities.exe Window -->
+<div class="xp-window-overlay" id="activitiesOverlay"></div>
+<div class="xp-window" id="activitiesWindow">
+    <div class="xp-window-header" id="activitiesHeader">
+        <div class="xp-window-title">
+            <img src="assets/activities.ico" alt="activities.exe" class="xp-title-icon">
+            activities.exe
+        </div>
+        <div class="xp-window-controls">
+            <div class="xp-control-btn minimize" id="activitiesMinBtn">
+                <i class="fas fa-window-minimize"></i>
+            </div>
+            <div class="xp-control-btn maximize" id="activitiesMaxBtn">
+                <i class="fas fa-window-maximize"></i>
+            </div>
+            <div class="xp-control-btn close" id="activitiesCloseBtn">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Menu Bar -->
+    <div class="xp-menu-bar">
+        <div class="xp-menu-item">
+            File
+            <div class="xp-menu-dropdown">
+                <div class="xp-dropdown-item">New Project</div>
+                <div class="xp-dropdown-item">Open...</div>
+                <div class="xp-dropdown-item">Save</div>
+                <div class="xp-dropdown-divider"></div>
+                <div class="xp-dropdown-item">Add to Desktop</div>
+                <div class="xp-dropdown-divider"></div>
+                <div class="xp-dropdown-item">Exit</div>
+            </div>
+        </div>
+        <div class="xp-menu-item">
+            Edit
+            <div class="xp-menu-dropdown">
+                <div class="xp-dropdown-item">Undo</div>
+                <div class="xp-dropdown-item">Redo</div>
+                <div class="xp-dropdown-divider"></div>
+                <div class="xp-dropdown-item">Cut</div>
+                <div class="xp-dropdown-item">Copy</div>
+                <div class="xp-dropdown-item">Paste</div>
+            </div>
+        </div>
+        <div class="xp-menu-item">
+            View
+            <div class="xp-menu-dropdown">
+                <div class="xp-dropdown-item">Toolbar</div>
+                <div class="xp-dropdown-item">Status Bar</div>
+                <div class="xp-dropdown-divider"></div>
+                <div class="xp-dropdown-item">Large Icons</div>
+                <div class="xp-dropdown-item">Small Icons</div>
+                <div class="xp-dropdown-item">List</div>
+                <div class="xp-dropdown-item">Details</div>
+            </div>
+        </div>
+        <div class="xp-menu-item">
+            Tools
+            <div class="xp-menu-dropdown">
+                <div class="xp-dropdown-item">Options...</div>
+                <div class="xp-dropdown-item">Customize...</div>
+            </div>
+        </div>
+        <div class="xp-menu-item">
+            Help
+            <div class="xp-menu-dropdown">
+                <div class="xp-dropdown-item">Help Topics</div>
+                <div class="xp-dropdown-divider"></div>
+                <div class="xp-dropdown-item">About activities.exe</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="xp-window-body">
+        <!-- Área de conteúdo (Diretório estilo Windows XP) -->
+        <div class="xp-directory">
+            <fieldset>
+                <legend>Creative Directory</legend>
+                <ul>
+                    <li>
+                        <img src="assets/moodboard.ico" alt="">
+                
+                <a href="#" data-section="moodboards">Moodboards</a>
+            </li>
+            <li>
+                <img src="assets/styling.ico" alt="">
+                <a href="#" data-section="styling">Styling</a>
+            </li>
+            <li>
+                <img src="assets/stage.ico" alt="">
+                <a href="#" data-section="stage">Stage Setup</a>
+            </li>
+            <li>
+                <img src="assets/editing.ico" alt="">
+                <a href="#" data-section="editing">Editing</a>
+            </li>
+        </ul>
+    </fieldset>
+</div>
+    
+    <div class="xp-window-statusbar">
+        <div class="xp-status-item">
+            <span id="statusText">4 items</span>
+        </div>
+    </div>
+</div>
+        
+
+    <!-- Scripts JavaScript -->
+    <script src="main.js"></script>
+    <script src="image-viewer.js"></script>
+
+</body>
+</html>
