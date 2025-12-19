@@ -758,9 +758,7 @@ class XPMediaPlayerSystem {
                         Windows Media Player
                     </div>
                     <div class="video-player-controls">
-                        <div class="video-player-btn" id="xpMinBtn">_</div>
-                        <div class="video-player-btn" id="xpMaxBtn">□</div>
-                        <div class="video-player-btn" id="xpCloseBtn">×</div>
+                        <div class="video-player-btn" id="xpCloseBtn">r</div>
                     </div>
                 </div>
                 <div class="video-player-body">
@@ -997,6 +995,7 @@ class XPMediaPlayerSystem {
             });
         }
     }
+    
     
     loadVideo(index) {
         if (index >= 0 && index < this.playlist.length) {
@@ -2039,20 +2038,7 @@ class XPImageViewerSystem {
                         ${config.title} - [${this.currentImageIndex + 1}/${this.images.length}]
                     </div>
                     <div class="xp-image-controls" style="display: flex; gap: 4px;">
-                        <div class="xp-image-btn" id="xpImageMinBtn" style="
-                            width: 20px;
-                            height: 20px;
-                            border: 2px solid;
-                            border-color: #ffffff #808080 #808080 #ffffff;
-                            background: #c0c0c0;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            font-size: 10px;
-                            cursor: pointer;
-                            color: #000;
-                            font-family: "Webdings", "Marlett", sans-serif;
-                        ">_</div>
+                        
                         <div class="xp-image-btn" id="xpImageMaxBtn" style="
                             width: 20px;
                             height: 20px;
@@ -2080,7 +2066,7 @@ class XPImageViewerSystem {
                             cursor: pointer;
                             color: #000;
                             font-family: "Webdings", "Marlett", sans-serif;
-                        ">×</div>
+                        ">r</div>
                     </div>
                 </div>
                 
@@ -2205,7 +2191,7 @@ class XPImageViewerSystem {
                                 white-space: nowrap;
                                 gap: 4px;
                             ">
-                                <span style="font-size: 14px;">🖼️</span> Set as Wallpaper
+                                <span style="font-size: 14px;">🖼️</span> 
                             </button>
                             ` : ''}
                             
