@@ -3241,7 +3241,7 @@ class AnteroPortfolio {
             <div style="display: flex; justify-content: center; align-items: center; height: 100vh; background: #ff69b4; color: white; font-family: 'VT323';">
                 <div style="text-align: center; padding: 40px; background: rgba(0,0,0,0.3); border: 3px solid #000;">
                     <div style="font-size: 48px; margin-bottom: 20px;">✿</div>
-                    <div style="font-size: 24px; margin-bottom: 10px;">Windows 98</div>
+                    <div style="font-size: 24px; margin-bottom: 10px;">My Portfolio</div>
                     <div style="font-size: 18px; margin-bottom: 30px;">Antero Rodrigo Edition</div>
                     <div style="font-size: 20px;">It's now safe to turn off your computer.</div>
                     <div style="margin-top: 30px; font-size: 14px; opacity: 0.8;">
