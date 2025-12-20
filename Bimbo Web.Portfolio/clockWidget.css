@@ -1,0 +1,181 @@
+/* OVERLAY */
+.clock-widget-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* JANELA XP */
+.clock-widget-window {
+    width: 380px;
+    background: #ece9d8;
+    border: 2px solid #0f2d49;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    font-family: Tahoma, Verdana, sans-serif;
+}
+
+/* HEADER XP */
+.widget-header {
+    height: 32px;
+    background: linear-gradient(#e40f67, #eb4690);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px;
+    border-radius: 6px 6px 0 0;
+    font-size: 13px;
+    user-select: none;
+}
+
+/* BOTÃO FECHAR */
+.xp-close {
+    width: 22px;
+    height: 22px;
+    background: linear-gradient(#ff5c5c, #c80000);
+    border: 1px solid #7a0000;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 0;
+}
+
+/* CONTEÚDO */
+.widget-content {
+    padding: 14px;
+    text-align: center;
+}
+
+/* DOG DISPLAY */
+.dog-display {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#current-dog {
+    max-height: 100%;
+    image-rendering: pixelated;
+}
+
+/* RELÓGIO */
+.analog-clock {
+    width: 180px;
+    height: 180px;
+    margin: 10px auto 15px;
+    border-radius: 50%;
+    background: radial-gradient(#ffffff, #dcdcdc);
+    border: 4px solid hsl(287, 92%, 28%);
+    position: relative;
+}
+
+.hand {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: left center;
+    transform: rotate(0deg);
+}
+
+.hand.hour {
+    width: 40%;
+    height: 4px;
+    background: #000;
+}
+
+.hand.minute {
+    width: 48%;
+    height: 3px;
+    background: #000;
+}
+
+.hand.second {
+    width: 50%;
+    height: 2px;
+    background: red;
+}
+
+.clock-center {
+    width: 10px;
+    height: 10px;
+    background: black;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* SELETOR DE CÃES */
+.dog-selector {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding-top: 10px;
+    border-top: 1px solid #b5b5b5;
+}
+
+.dog-selector img {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: linear-gradient(#ffffff, #dff0ff);
+    border: 2px solid #d97abb;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.dog-selector img:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 6px rgba(235, 35, 158, 0.6);
+}
+
+.pet-selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 12px;
+    gap: 8px;
+    user-select: none;
+}
+
+/* SETAS */
+.arrow {
+    font-size: 14px;
+    color: #2a5db0;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* ÁREA DE VISUALIZAÇÃO */
+.pet-viewport {
+    width: 160px;
+    height: 64px;
+    overflow: hidden;
+    border-radius: 10px;
+    background: linear-gradient(#ffffff, #dff0ff);
+    border: 2px solid #7aa7d9;
+}
+
+/* TRACK DESLIZÁVEL */
+.pet-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.08s linear;
+}
+
+/* IMAGENS */
+.pet-track img {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    pointer-events: none;
+}
