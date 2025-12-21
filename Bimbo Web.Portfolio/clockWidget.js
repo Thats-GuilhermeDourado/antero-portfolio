@@ -231,25 +231,27 @@ function closeClockWidget() {
 // Relogio analógico
 function updateAnalogClock() {
     const now = new Date();
-    const seconds = now.getSeconds();
-    const minutes = now.getMinutes();
     const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
 
     const secondHand = document.querySelector('.hand.second');
     const minuteHand = document.querySelector('.hand.minute');
-    const hourHand = document.querySelector('.hand.hour');
+    const hourHand   = document.querySelector('.hand.hour');
 
     if (secondHand && minuteHand && hourHand) {
-        secondHand.style.transform = `rotate(${seconds * 6}deg)`;
-        minuteHand.style.transform = `rotate(${minutes * 6 + seconds * 0.1}deg)`;
-        hourHand.style.transform = `rotate(${(hours % 12) * 30 + minutes * 0.5}deg)`;
+        const secondDegrees = seconds * 6;
+        const minuteDegrees = minutes * 6 + seconds * 0.1;
+        const hourDegrees   = (hours % 12) * 30 + minutes * 0.5;
+
+        secondHand.style.transform = `rotate(${secondDegrees - 90}deg)`;
+        minuteHand.style.transform = `rotate(${minuteDegrees - 90}deg)`;
+        hourHand.style.transform   = `rotate(${hourDegrees - 90}deg)`;
     }
 
-    const overlay = document.getElementById('clockWidgetOverlay');
-    if (overlay && overlay.style.display === 'flex') {
-        requestAnimationFrame(updateAnalogClock);
-    }
+    setTimeout(updateAnalogClock, 1000);
 }
+
 
 // Slide do Pet
 function initPetSlider() {
